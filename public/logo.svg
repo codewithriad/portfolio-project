@@ -1,0 +1,5 @@
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20,35 C20,35 25,15 35,15 C40,15 45,20 40,35 L35,45 M35,25 C35,25 45,25 50,30" stroke="#1a1a1a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="60" y="35" font-family="cursive, 'Brush Script MT', 'Comic Sans MS', sans-serif" font-size="28" font-style="italic" fill="#1a1a1a" font-weight="400">Riyad Khan</text>
+  <path d="M20,42 Q100,45 180,40" stroke="#FAB95B" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.8"/>
+</svg>
