@@ -71,10 +71,10 @@ const Navigation = () => {
                         <Image
                             src="/logo.png"
                             alt="Riyad"
-                            width={160}
-                            height={40}
+                            width={220}
+                            height={60}
                             priority
-                            className="h-10 w-auto"
+                            className="h-14 md:h-16 w-auto"
                         />
                     </Link>
 
