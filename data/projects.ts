@@ -9,7 +9,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API", "PostgreSQL"],
     image: "/images/projects/tapplix.jpg",
     slug: "tapplix-sass-project",
-    liveUrl: "https://tapplix.com",
+    liveUrl: "https://tapplix.teach",
   },
   {
     id: "2",
@@ -29,6 +29,7 @@ export const projects: Project[] = [
     technologies: ["Vue.js", "Nuxt", "Node.js", "Stripe"],
     image: "/images/projects/charity.jpeg",
     slug: "charity-project",
+    liveUrl: "https://donateforchildren.netlify.app/",
   },
   {
     id: "4",
@@ -38,6 +39,5 @@ export const projects: Project[] = [
     technologies: ["React Native", "IoT", "GraphQL", "AWS IoT"],
     image: "/images/projects/lumeva.jpg",
     slug: "lumeva-project",
-    liveUrl: "https://lumeva.io",
   },
 ];
