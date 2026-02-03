@@ -42,91 +42,144 @@ export default async function WorkDetailPage({
     }
 
     return (
-        <main className="min-h-screen pt-24 pb-20">
-            <div className="container-custom">
-                {/* Back Button */}
-                <Link
-                    href="/#selected-work"
-                    className="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors mb-8"
-                >
-                    <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+        <main className="min-h-screen bg-white">
+            {/* Back Navigation */}
+            <div className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+                <div className="container-custom h-20 flex items-center">
+                    <Link
+                        href="/#selected-work"
+                        className="inline-flex items-center gap-2 text-secondary hover:text-primary transition-colors group"
                     >
-                        <path d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                    Back to work
-                </Link>
+                        <svg
+                            className="w-5 h-5 transition-transform group-hover:-translate-x-1"
+                            fill="none"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        <span className="font-medium">Back to projects</span>
+                    </Link>
+                </div>
+            </div>
 
-                {/* Project Header */}
-                <div className="mb-12">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
+            <div className="container-custom pt-32 pb-20">
+                {/* Header Section */}
+                <div className="max-w-5xl mb-16">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-primary mb-8 leading-tight text-balance">
                         {project.title}
                     </h1>
-                    <p className="text-xl md:text-2xl text-secondary max-w-3xl">
+                    <p className="text-xl md:text-2xl text-secondary max-w-3xl leading-relaxed">
                         {project.description}
                     </p>
                 </div>
 
-                {/* Project Image */}
-                <div className="relative aspect-video rounded-2xl overflow-hidden mb-12">
+                {/* Hero Image */}
+                <div className="relative aspect-video w-full rounded-3xl overflow-hidden mb-20 shadow-2xl shadow-gray-200/50">
                     <Image
                         src={project.image}
                         alt={project.title}
                         fill
                         className="object-cover"
                         priority
-                        sizes="(max-width: 1280px) 100vw, 1280px"
+                        sizes="90vw"
                     />
                 </div>
 
-                {/* Project Content */}
-                <div className="prose prose-lg max-w-4xl mx-auto">
-                    <h2>Project Overview</h2>
-                    <p>
-                        This project focused on {project.description.toLowerCase()}. Through
-                        extensive user research and iterative design processes, we created a
-                        solution that significantly improved user satisfaction and engagement
-                        metrics.
-                    </p>
+                {/* Project Info Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 mb-20">
+                    {/* Left Sidebar - Details */}
+                    <div className="lg:col-span-4 space-y-10">
+                        {/* Live Link */}
+                        {project.liveUrl && (
+                            <div>
+                                <a
+                                    href={project.liveUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center justify-center w-full px-8 py-4 bg-primary text-white text-lg font-medium rounded-full hover:bg-gray-800 transition-all hover:scale-[1.02] shadow-xl shadow-primary/20"
+                                >
+                                    Visit Website
+                                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </div>
+                        )}
 
-                    <h3>Challenge</h3>
-                    <p>
-                        The main challenge was understanding the diverse needs of our user
-                        base while maintaining a cohesive design language. We needed to
-                        balance functionality with aesthetics, ensuring that every design
-                        decision served a clear purpose.
-                    </p>
+                        <div className="p-8 bg-gray-50 rounded-3xl space-y-8">
+                            <div>
+                                <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-3">Technologies</h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.technologies?.map((tech) => (
+                                        <span
+                                            key={tech}
+                                            className="px-3 py-1 bg-white border border-gray-100 rounded-full text-sm text-secondary font-medium"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
 
-                    <h3>Solution</h3>
-                    <p>
-                        We implemented a user-centered design approach, conducting multiple
-                        rounds of usability testing and gathering feedback from stakeholders.
-                        The final design incorporated modern UI patterns while maintaining
-                        accessibility standards.
-                    </p>
+                            <div>
+                                <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-2">Purpose</h3>
+                                <p className="text-secondary leading-relaxed">
+                                    {project.purpose}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <h3>Results</h3>
-                    <ul>
-                        <li>40% increase in user engagement</li>
-                        <li>25% reduction in task completion time</li>
-                        <li>95% positive user feedback</li>
-                        <li>Improved accessibility scores across all metrics</li>
-                    </ul>
+                    {/* Right Content - Overview */}
+                    <div className="lg:col-span-8 prose prose-lg prose-gray max-w-none">
+                        <h2 className="text-3xl font-bold text-primary mb-6">Project Overview</h2>
+                        <p className="text-secondary text-lg leading-relaxed mb-8">
+                            {project.description} This project represents a significant step forward in {project.purpose.toLowerCase()}.
+                            We focused on creating a seamless user experience that addresses the core needs of the target audience.
+                        </p>
+
+                        <h3 className="text-2xl font-bold text-primary mb-4">Key Challenges & Solutions</h3>
+                        <p className="text-secondary text-lg leading-relaxed mb-8">
+                            One of the main challenges was interpreting complex requirements and translating them into an intuitive interface.
+                            By leveraging {project.technologies?.[0] || "modern technologies"} and adopting a component-driven architecture,
+                            we were able to build a scalable and maintainable solution.
+                        </p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 not-prose">
+                            {[1, 2].map((i) => (
+                                <div key={i} className="aspect-[4/3] relative rounded-2xl overflow-hidden bg-gray-100">
+                                    {/* Placeholder for additional project shots - using main image for now */}
+                                    <Image
+                                        src={project.image}
+                                        alt="Project Screenshot"
+                                        fill
+                                        className="object-cover opacity-80 hover:opacity-100 transition-opacity"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        <h3 className="text-2xl font-bold text-primary mb-4">Outcome</h3>
+                        <p className="text-secondary text-lg leading-relaxed">
+                            The final product successfully meets all initial requirements and has received positive feedback for its
+                            performance and user-centric design. It stands as a testament to the power of modern web technologies
+                            combined with thoughtful design.
+                        </p>
+                    </div>
                 </div>
 
-                {/* CTA */}
-                <div className="mt-16 text-center">
+                {/* Next Project CTA */}
+                <div className="border-t border-gray-100 pt-20 mt-20 text-center">
+                    <p className="text-secondary mb-6">Ready to see more?</p>
                     <Link
                         href="/#selected-work"
-                        className="inline-block px-8 py-3.5 bg-accent text-white rounded-full hover:bg-accent-hover transition-all hover:scale-105 font-medium"
+                        className="inline-block px-10 py-4 border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all font-medium text-lg"
                     >
-                        View more projects
+                        View More Projects
                     </Link>
                 </div>
             </div>

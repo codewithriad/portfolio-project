@@ -6,6 +6,9 @@ export interface Project {
   description: string;
   image: string;
   slug: string;
+  purpose: string;
+  technologies: string[];
+  liveUrl?: string;
 }
 
 export interface Testimonial {
