@@ -38,13 +38,13 @@ const About = () => {
                         className="flex flex-col justify-center"
                     >
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-6">
-                            Computer scientist turn designer
+                            Md. Riyad Khan
                         </h2>
 
                         <p className="text-lg md:text-xl text-secondary mb-8 leading-relaxed">
-                            I am a product designer with a background in computer science,
+                            I am a web developer with a background in computer science,
                             blending design intuition with technical problem-solving to create
-                            seamless, user-friendly digital experiences.
+                            seamless, user-friendly web applications.
                         </p>
 
                         <div className="space-y-3 mb-8">

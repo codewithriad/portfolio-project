@@ -46,21 +46,21 @@ const Hero = () => {
                         >
                             <div className="mb-4">
                                 <span className="inline-flex items-center px-4 py-2 bg-black/5 rounded-full text-sm font-medium text-secondary">
-                                    📍 Los Angeles
+                                    📍 Bangladesh
                                 </span>
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-6">
-                                Roy Jones
+                                Md. Riyad Khan
                             </h1>
 
                             <p className="text-xl md:text-2xl text-secondary mb-8 max-w-2xl">
-                                Creating intuitive, user-focused digital experiences.
+                                I am a passionate web developer with a strong foundation in building modern, responsive, and user-friendly websites. I specialize in creating seamless digital experiences by combining clean code with creative design.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                 <a
-                                    href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@riyadkhan.dev"}`}
+                                    href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "[EMAIL_ADDRESS]"}`}
                                     className="px-8 py-3.5 bg-accent text-white rounded-full hover:bg-accent-hover transition-all hover:scale-105 font-medium"
                                 >
                                     Let&apos;s talk!

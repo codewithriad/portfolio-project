@@ -10,26 +10,26 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Roy Jones - Product Designer",
+  title: "Md. Riyad Khan - Web Developer",
   description:
-    "Creating intuitive, user-focused digital experiences. Product designer with a background in computer science.",
+    "Creating intuitive, user-focused digital experiences. Web developer with a background in computer science.",
   keywords: [
-    "product designer",
+    "web developer",
     "UX designer",
     "UI designer",
     "portfolio",
     "design",
   ],
-  authors: [{ name: "Roy Jones" }],
+  authors: [{ name: "Md. Riyad Khan" }],
   openGraph: {
-    title: "Roy Jones - Product Designer",
+    title: "Md. Riyad Khan - Web Developer",
     description: "Creating intuitive, user-focused digital experiences",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roy Jones - Product Designer",
+    title: "Md. Riyad Khan - Web Developer",
     description: "Creating intuitive, user-focused digital experiences",
   },
 };

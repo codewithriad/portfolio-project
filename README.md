@@ -1,4 +1,4 @@
-# Roy Jones - Product Designer Portfolio
+# Md. Riyad Khan - Web Developer Portfolio
 
 A modern, production-ready Next.js 14 portfolio website showcasing design work, experience, and articles.
 
