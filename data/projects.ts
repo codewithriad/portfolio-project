@@ -9,7 +9,7 @@ export const projects: Project[] = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "OpenAI API", "PostgreSQL"],
     image: "/images/projects/tapplix.jpg",
     slug: "tapplix-sass-project",
-    liveUrl: "https://tapplix.teach",
+    liveUrl: "https://www.tapplix.tech/",
   },
   {
     id: "2",
