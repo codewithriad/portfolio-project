@@ -151,7 +151,7 @@ export default async function WorkDetailPage({
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 not-prose">
                             {[1, 2].map((i) => (
-                                <div key={i} className="aspect-[4/3] relative rounded-2xl overflow-hidden bg-gray-100">
+                                <div key={i} className="aspect-4/3 relative rounded-2xl overflow-hidden bg-gray-100">
                                     {/* Placeholder for additional project shots - using main image for now */}
                                     <Image
                                         src={project.image}

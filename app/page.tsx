@@ -1,6 +1,6 @@
 import About from "@/components/About";
 import Articles from "@/components/Articles";
-import CTA from "@/components/CTA";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import SelectedWork from "@/components/SelectedWork";
@@ -14,7 +14,7 @@ export default function Home() {
       <About />
       <Testimonials />
       <Articles />
-      <CTA />
+      <Contact />
       <Footer />
     </main>
   );
