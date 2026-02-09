@@ -14,7 +14,7 @@ const Hero = () => {
     return (
         <section
             id="hero"
-            className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-50 to-white pt-20"
+            className="min-h-screen flex items-center justify-center relative bg-linear-to-br from-gray-50 to-white pt-20"
         >
             <div className="container-custom">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
@@ -23,16 +23,16 @@ const Hero = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.6 }}
-                        className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56"
+                        className="relative w-72 h-112 md:w-80 md:h-128 lg:w-96 lg:h-144 shrink-0"
                     >
-                        <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-white shadow-2xl">
+                        <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
                             <Image
-                                src="/images/profile.jpg"
-                                alt="Roy Jones"
+                                src="/riyad/s1.png"
+                                alt="Md. Riyad Khan"
                                 fill
                                 className="object-cover"
                                 priority
-                                sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
+                                sizes="(max-width: 768px) 288px, (max-width: 1024px) 320px, 384px"
                             />
                         </div>
                     </motion.div>

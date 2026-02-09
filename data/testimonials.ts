@@ -16,7 +16,7 @@ export const testimonials: Testimonial[] = [
       "Roy has an exceptional eye for detail and a deep understanding of user psychology. His designs consistently exceed expectations and drive meaningful engagement.",
     author: "Sarah M",
     title: "Product Manager",
-    image: "/images/testimonials/avatar2.jpg",
+    image: "/images/testimonials/avatar2.png",
     linkedinUrl: "https://linkedin.com",
   },
   {
@@ -25,7 +25,7 @@ export const testimonials: Testimonial[] = [
       "Roy balances beauty and usability, crafting intuitive, appealing designs that users love. His work transforms complex problems into elegant solutions.",
     author: "Michael K",
     title: "Engineering Lead",
-    image: "/images/testimonials/avatar3.jpg",
+    image: "/images/testimonials/avatar3.png",
     linkedinUrl: "https://linkedin.com",
   },
   {
@@ -34,7 +34,7 @@ export const testimonials: Testimonial[] = [
       "Blends style and functionality seamlessly. Working with Roy has been transformative for our product. His strategic thinking and design expertise are unmatched.",
     author: "Emily R",
     title: "Design Director",
-    image: "/images/testimonials/avatar4.jpg",
+    image: "/images/testimonials/avatar4.png",
     linkedinUrl: "https://linkedin.com",
   },
 ];

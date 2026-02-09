@@ -40,6 +40,9 @@ const config: Config = {
       spacing: {
         section: "5rem",
         "section-mobile": "2.5rem",
+        "112": "28rem",
+        "128": "32rem",
+        "144": "36rem",
       },
       animation: {
         "fade-in": "fadeIn 0.6s ease-in-out",

@@ -4,6 +4,7 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
+  honeypot: string; // Anti-spam field
 }
 
 export interface FormErrors {
@@ -12,6 +13,7 @@ export interface FormErrors {
   email?: string;
   subject?: string;
   message?: string;
+  honeypot?: string;
 }
 
 export const validateEmail = (email: string): boolean => {
@@ -50,6 +52,12 @@ export const validateForm = (data: ContactFormData): FormErrors => {
 
   if (!data.message.trim()) {
     errors.message = "Message is required";
+  }
+
+  // Honeypot check: If this is filled, it's likely a bot.
+  // We don't return an error to the UI, but the API will handle it.
+  if (data.honeypot) {
+    errors.honeypot = "Bot detected";
   }
 
   return errors;

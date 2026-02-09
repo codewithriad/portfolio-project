@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
     "UI designer",
     "portfolio",
     "design",
+    "software engineer",
   ],
   authors: [{ name: "Md. Riyad Khan" }],
   openGraph: {
@@ -42,6 +44,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="antialiased">
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#111827",
+              color: "#fff",
+              border: "1px solid #1f2937",
+            },
+          }}
+        />
         <Navigation />
         {children}
       </body>

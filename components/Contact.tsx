@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { toast } from "react-hot-toast";
 import { countries, getCountryFromTimezone, type Country } from "../utils/countryData";
 import { validateForm, type ContactFormData, type FormErrors } from "../utils/formUtils";
 
@@ -57,7 +58,9 @@ interface InputFieldProps {
 
 const InputField = memo(({ label, name, type = "text", value, error, onChange, disabled, isPhone, selectedCountry, onCountryChange }: InputFieldProps) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const searchInputRef = useRef<HTMLInputElement>(null);
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -70,10 +73,26 @@ const InputField = memo(({ label, name, type = "text", value, error, onChange, d
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
+    // Focus search input when dropdown opens
+    useEffect(() => {
+        if (isDropdownOpen && searchInputRef.current) {
+            searchInputRef.current.focus();
+        }
+    }, [isDropdownOpen]);
+
     const handleCountrySelect = (country: Country) => {
         if (onCountryChange) onCountryChange(country);
         setIsDropdownOpen(false);
+        setSearchQuery("");
     };
+
+    const filteredCountries = searchQuery.trim()
+        ? countries.filter(c =>
+            c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            c.dialCode.includes(searchQuery) ||
+            c.code.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : countries;
 
     return (
         <div className="flex flex-col gap-1.5 w-full relative">
@@ -96,10 +115,18 @@ const InputField = memo(({ label, name, type = "text", value, error, onChange, d
                             <button
                                 type="button"
                                 onClick={() => !disabled && setIsDropdownOpen(!isDropdownOpen)}
-                                className={`h-full flex items-center gap-1.5 bg-[#111827] border ${error ? "border-red-500/50" : "border-gray-800 focus:border-blue-500"} rounded-lg px-3 text-white transition-all duration-300 outline-none focus:ring-1 focus:ring-blue-500/50`}
+                                className={`h-full flex items-center gap-1.5 bg-[#111827] border ${error ? "border-red-500/50" : "border-gray-800 focus:border-blue-500"} rounded-lg px-3 text-white transition-all duration-300 outline-none focus:ring-1 focus:ring-blue-500/50 min-w-[100px] justify-between`}
                             >
-                                <span className="text-xl">{selectedCountry.flag}</span>
-                                <span className="text-xs text-gray-400 min-w-[34px]">{selectedCountry.dialCode}</span>
+                                <div className="flex items-center gap-2">
+                                    <div className="w-5 h-3.5 overflow-hidden shrink-0">
+                                        <img
+                                            src={`https://flagcdn.com/w40/${selectedCountry.code.toLowerCase()}.png`}
+                                            alt={selectedCountry.name}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <span className="text-xs font-medium text-gray-300">{selectedCountry.dialCode}</span>
+                                </div>
                                 <span className={`text-gray-500 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}>
                                     <ChevronDownIcon />
                                 </span>
@@ -107,20 +134,48 @@ const InputField = memo(({ label, name, type = "text", value, error, onChange, d
 
                             {/* Dropdown Menu */}
                             {isDropdownOpen && (
-                                <div className="absolute top-full left-0 mt-2 w-64 max-h-60 overflow-y-auto bg-[#1a2333] border border-gray-700 rounded-lg shadow-xl z-50">
-                                    <div className="p-1">
-                                        {countries.map((country) => (
-                                            <button
-                                                key={country.code}
-                                                type="button"
-                                                onClick={() => handleCountrySelect(country)}
-                                                className="flex items-center gap-3 w-full px-3 py-2 hover:bg-white/5 rounded-md text-left transition-colors"
-                                            >
-                                                <span className="text-xl">{country.flag}</span>
-                                                <span className="text-gray-200 text-sm flex-1">{country.name}</span>
-                                                <span className="text-gray-500 text-xs">{country.dialCode}</span>
-                                            </button>
-                                        ))}
+                                <div className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-hidden bg-[#1a2333]/95 backdrop-blur-md border border-gray-700/50 rounded-xl shadow-2xl z-50 flex flex-col">
+                                    {/* Search Box */}
+                                    <div className="p-3 border-b border-gray-700/50">
+                                        <input
+                                            ref={searchInputRef}
+                                            type="text"
+                                            placeholder="Search country..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full bg-[#111827] border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-hidden focus:border-blue-500 transition-colors"
+                                            onClick={(e) => e.stopPropagation()}
+                                        />
+                                    </div>
+
+                                    {/* List */}
+                                    <div className="overflow-y-auto flex-1 custom-scrollbar scrollbar-thin scrollbar-thumb-gray-700">
+                                        <div className="p-1">
+                                            {filteredCountries.length > 0 ? (
+                                                filteredCountries.map((country) => (
+                                                    <button
+                                                        key={country.code}
+                                                        type="button"
+                                                        onClick={() => handleCountrySelect(country)}
+                                                        className={`flex items-center gap-3 w-full px-3 py-2.5 hover:bg-white/5 rounded-lg text-left transition-colors ${selectedCountry.code === country.code ? 'bg-blue-500/10 border border-blue-500/20' : ''}`}
+                                                    >
+                                                        <div className="w-5 h-3.5 overflow-hidden shrink-0 shadow-sm">
+                                                            <img
+                                                                src={`https://flagcdn.com/w40/${country.code.toLowerCase()}.png`}
+                                                                alt={country.name}
+                                                                className="w-full h-full object-cover"
+                                                            />
+                                                        </div>
+                                                        <span className="text-gray-200 text-sm flex-1 truncate">{country.name}</span>
+                                                        <span className="text-gray-500 text-xs font-mono">{country.dialCode}</span>
+                                                    </button>
+                                                ))
+                                            ) : (
+                                                <div className="px-4 py-8 text-center text-gray-500 text-sm">
+                                                    No countries found
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             )}
@@ -149,6 +204,7 @@ const InputField = memo(({ label, name, type = "text", value, error, onChange, d
     );
 });
 
+
 const ContactInfoItem = memo(({ icon: Icon, title, content, href }: { icon: any; title: string; content: string; href?: string }) => (
     <div className="flex items-start gap-4 group">
         <div className="shrink-0 mt-1">
@@ -176,6 +232,7 @@ const Contact = () => {
         email: "",
         subject: "",
         message: "",
+        honeypot: "", // Honeypot field
     });
 
     // Country state
@@ -277,13 +334,30 @@ const Contact = () => {
         setStatus("submitting");
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            setStatus("success");
-            // Reset form but keep country code
-            setFormData({ name: "", phone: selectedCountry.dialCode + " ", email: "", subject: "", message: "" });
-            setTimeout(() => setStatus("idle"), 5000);
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                toast.success(result.message || "Message sent successfully!");
+                setStatus("success");
+                // Reset form but keep country code
+                setFormData({ name: "", phone: selectedCountry.dialCode + " ", email: "", subject: "", message: "", honeypot: "" });
+                setTimeout(() => setStatus("idle"), 5000);
+            } else {
+                toast.error(result.message || "Failed to send message");
+                setErrors({ message: result.message || "Failed to send message" });
+                setStatus("error");
+            }
         } catch (error) {
-            console.error("Submission error:", error);
+            toast.error("Network error. Please try again later.");
+            setErrors({ message: "Network error. Please try again later." });
             setStatus("error");
         }
     };
@@ -329,7 +403,7 @@ const Contact = () => {
                                     animate={isInView ? { opacity: 1 } : {}}
                                     transition={{ delay: 0.3 }}
                                 >
-                                    Let's collaborate on your next big idea. I'm here to bring your vision to life.
+                                    Let&apos;s collaborate on your next big idea. I&apos;m here to bring your vision to life.
                                 </motion.p>
                             </div>
 
@@ -418,6 +492,18 @@ const Contact = () => {
                                     disabled={status === "submitting"}
                                 />
 
+                                {/* Honeypot - Hidden from humans but visible to bots */}
+                                <div className="hidden" aria-hidden="true">
+                                    <input
+                                        type="text"
+                                        name="honeypot"
+                                        value={formData.honeypot}
+                                        onChange={handleChange}
+                                        tabIndex={-1}
+                                        autoComplete="off"
+                                    />
+                                </div>
+
                                 <div className="pt-4">
                                     <button
                                         type="submit"
@@ -443,17 +529,6 @@ const Contact = () => {
                                         )}
                                     </button>
                                 </div>
-
-                                {/* Success Feedback */}
-                                {status === "success" && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: "auto" }}
-                                        className="bg-green-500/10 text-green-400 p-3 rounded-lg text-center text-sm"
-                                    >
-                                        Message sent successfully!
-                                    </motion.div>
-                                )}
                             </form>
                         </div>
 
