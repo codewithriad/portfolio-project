@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "UI designer",
     "portfolio",
     "design",
-    "software engineer",
+    "Ai Developer",
   ],
   authors: [{ name: "Md. Riyad Khan" }],
   openGraph: {

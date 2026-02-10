@@ -1,0 +1,67 @@
+/* CSS for HorizontalGallery component with modern hover effects */
+
+.horizontal-gallery-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-gallery-container {
+  height: 100%;
+}
+
+.gallery-item {
+  box-sizing: border-box;
+}
+
+/* Modern hover effects */
+.gallery-item:hover .project-image {
+  transform: scale(1.08);
+}
+
+.gallery-item:hover .project-overlay {
+  opacity: 1 !important;
+}
+
+.gallery-item:hover .project-overlay h3,
+.gallery-item:hover .project-overlay p {
+  transform: translateY(0) !important;
+}
+
+/* Add subtle shadow on hover */
+.project-image-container {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.gallery-item:hover .project-image-container {
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .gallery-item {
+    width: 60vw !important;
+    min-width: 400px !important;
+    height: 60vh !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-item {
+    width: 75vw !important;
+    min-width: 350px !important;
+    height: 55vh !important;
+    padding: 0 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-item {
+    width: 85vw !important;
+    min-width: 280px !important;
+    height: 50vh !important;
+    padding: 0 0.75rem !important;
+  }
+}

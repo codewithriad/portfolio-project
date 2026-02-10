@@ -3,11 +3,9 @@
 import { experiences } from "@/data/experience";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
 
 const About = () => {
-    const [expandedId, setExpandedId] = useState<string | null>("1");
-
     return (
         <section id="about" className="section-padding bg-gray-50">
             <div className="container-custom">
@@ -60,7 +58,7 @@ const About = () => {
                                         clipRule="evenodd"
                                     />
                                 </svg>
-                                <span>Previously worked for Meta</span>
+                                <span>Previously worked for Tapplix</span>
                             </div>
                             <div className="flex items-center gap-3 text-base md:text-lg text-primary">
                                 <svg
@@ -74,13 +72,12 @@ const About = () => {
                                         clipRule="evenodd"
                                     />
                                 </svg>
-                                <span>Based in Los Angeles</span>
+                                <span>Based in Miami, Florida</span>
                             </div>
                         </div>
 
-                        <a
-                            href="/cv.pdf"
-                            download
+                        <Link
+                            href="/resume"
                             className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-full hover:bg-accent-hover transition-all hover:scale-105 font-medium w-fit"
                         >
                             <svg
@@ -92,79 +89,68 @@ const About = () => {
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
-                                <path d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
-                            Download CV
-                        </a>
+                            View Resume
+                        </Link>
                     </motion.div>
                 </div>
 
-                {/* Experience Timeline */}
+                {/* Experience Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h3 className="text-2xl md:text-3xl font-bold text-primary mb-8">
+                    <h3 className="text-2xl md:text-3xl font-bold text-primary mb-8 text-center">
                         Experience
                     </h3>
 
-                    <div className="space-y-4">
-                        {experiences.map((exp) => (
-                            <div
+                    {/* Experience Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        {experiences.map((exp, index) => (
+                            <motion.div
                                 key={exp.id}
-                                className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:border-gray-300 transition-colors"
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                className="group relative"
                             >
-                                <button
-                                    onClick={() =>
-                                        setExpandedId(expandedId === exp.id ? null : exp.id)
-                                    }
-                                    className="w-full px-6 py-5 flex items-center justify-between text-left"
-                                >
-                                    <div className="flex-1">
-                                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                                            <h4 className="text-lg md:text-xl font-bold text-primary">
-                                                {exp.role}
-                                            </h4>
-                                            <span className="text-sm text-secondary font-medium">
-                                                {exp.period}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center gap-3 text-secondary">
-                                            <span className="font-medium">{exp.company}</span>
+                                {/* Glassmorphism Card */}
+                                <div className="relative h-full bg-white/80 backdrop-blur-sm border border-gray-200 rounded-2xl p-6 md:p-8 shadow-md hover:shadow-xl transition-all duration-500 hover:scale-[1.02] hover:border-blue-500/30">
+                                    {/* Gradient Border Effect */}
+                                    <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-blue-500/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                                    {/* Period Badge */}
+                                    <div className="mb-4 relative z-10">
+                                        <span className="inline-flex items-center px-3 py-1 bg-blue-500/10 text-blue-600 rounded-full text-sm font-semibold">
+                                            {exp.period}
+                                        </span>
+                                    </div>
+
+                                    {/* Role & Company */}
+                                    <div className="mb-4 relative z-10">
+                                        <h4 className="text-xl md:text-2xl font-bold text-primary mb-2 group-hover:text-blue-600 transition-colors">
+                                            {exp.role}
+                                        </h4>
+                                        <div className="flex items-center gap-2 text-secondary">
+                                            <span className="font-semibold">{exp.company}</span>
                                             <span className="text-sm">• {exp.duration}</span>
                                         </div>
                                     </div>
 
-                                    <svg
-                                        className={`w-5 h-5 text-secondary transition-transform ml-4 ${expandedId === exp.id ? "rotate-180" : ""
-                                            }`}
-                                        fill="none"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
+                                    {/* Description */}
+                                    <p className="text-base text-gray-600 leading-relaxed relative z-10">
+                                        {exp.description}
+                                    </p>
 
-                                {expandedId === exp.id && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3 }}
-                                        className="px-6 pb-5"
-                                    >
-                                        <p className="text-secondary leading-relaxed">
-                                            {exp.description}
-                                        </p>
-                                    </motion.div>
-                                )}
-                            </div>
+                                    {/* Decorative Element */}
+                                    <div className="absolute bottom-0 right-0 w-32 h-32 bg-linear-to-br from-blue-500/5 to-purple-500/5 rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </motion.div>

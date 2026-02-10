@@ -13,7 +13,7 @@ const Footer = () => {
             </div>
 
             <div className="container-custom relative z-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8 mb-16">
                     {/* Column 1: Brand & Logo */}
                     <div className="space-y-4">
                         <Link href="/" className="inline-block relative w-56 h-28">
@@ -60,11 +60,23 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Column 3: Socials */}
+                    {/* Column 3: Contact & Social */}
                     <div>
-                        <h3 className="text-lg font-bold mb-6 text-white/90">Social Link</h3>
-                        <ul className="space-y-4">
-                            <li>
+                        <h3 className="text-lg font-bold mb-6 text-white/90">Contact</h3>
+                        <div className="space-y-6">
+                            <a href="mailto:info@riyadkhan.dev" className="block group">
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold group-hover:text-primary-400">Email</span>
+                                <p className="text-lg text-gray-200 mt-1 group-hover:text-white transition-colors">info@riyadkhan.dev</p>
+                            </a>
+
+                            <a href="https://wa.me/8801617852183" target="_blank" rel="noopener noreferrer" className="block group">
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold group-hover:text-green-400">WhatsApp</span>
+                                <p className="text-lg text-gray-200 mt-1 group-hover:text-white transition-colors">+880 1617 852183</p>
+                            </a>
+
+                            {/* Social Links */}
+                            <div className="pt-4 border-t border-white/10">
+                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold block mb-4">Follow Me</span>
                                 <a
                                     href="https://www.facebook.com/codewithriyad"
                                     target="_blank"
@@ -78,24 +90,7 @@ const Footer = () => {
                                     </span>
                                     Facebook
                                 </a>
-                            </li>
-                            {/* Add LinkedIn or others here if needed later */}
-                        </ul>
-                    </div>
-
-                    {/* Column 4: Contact Info */}
-                    <div>
-                        <h3 className="text-lg font-bold mb-6 text-white/90">Contact</h3>
-                        <div className="space-y-6">
-                            <a href="mailto:info@riyadkhan.dev" className="block group">
-                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold group-hover:text-primary-400">Email</span>
-                                <p className="text-lg text-gray-200 mt-1 group-hover:text-white transition-colors">info@riyadkhan.dev</p>
-                            </a>
-
-                            <a href="https://wa.me/8801617852183" target="_blank" rel="noopener noreferrer" className="block group">
-                                <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold group-hover:text-green-400">WhatsApp</span>
-                                <p className="text-lg text-gray-200 mt-1 group-hover:text-white transition-colors">+880 1617 852183</p>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </div>

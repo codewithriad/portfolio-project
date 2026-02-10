@@ -54,13 +54,20 @@ const Hero = () => {
                                 Md. Riyad Khan
                             </h1>
 
-                            <p className="text-xl md:text-2xl text-secondary mb-8 max-w-2xl">
+                            <p className="text-xl md:text-2xl text-secondary mb-8 max-w-2xl font-light leading-relaxed" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', letterSpacing: '-0.01em' }}>
                                 I am a passionate web developer with a strong foundation in building modern, responsive, and user-friendly websites. I specialize in creating seamless digital experiences by combining clean code with creative design.
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                                 <a
-                                    href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "[EMAIL_ADDRESS]"}`}
+                                    href="#contact"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const element = document.querySelector("#contact");
+                                        if (element) {
+                                            element.scrollIntoView({ behavior: "smooth" });
+                                        }
+                                    }}
                                     className="px-8 py-3.5 bg-accent text-white rounded-full hover:bg-accent-hover transition-all hover:scale-105 font-medium"
                                 >
                                     Let&apos;s talk!
