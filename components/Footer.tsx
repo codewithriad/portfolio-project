@@ -64,9 +64,9 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-bold mb-6 text-white/90">Contact</h3>
                         <div className="space-y-6">
-                            <a href="mailto:info@riyadkhan.dev" className="block group">
+                            <a href="mailto:frriyad111@gmail.com" className="block group">
                                 <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold group-hover:text-primary-400">Email</span>
-                                <p className="text-lg text-gray-200 mt-1 group-hover:text-white transition-colors">info@riyadkhan.dev</p>
+                                <p className="text-lg text-gray-200 mt-1 group-hover:text-white transition-colors">frriyad111@gmail.com</p>
                             </a>
 
                             <a href="https://wa.me/8801617852183" target="_blank" rel="noopener noreferrer" className="block group">

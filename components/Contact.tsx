@@ -416,8 +416,8 @@ const Contact = () => {
                                 <ContactInfoItem
                                     icon={MailIcon}
                                     title="E-mail:"
-                                    content="info@riyadkhan.dev"
-                                    href="mailto:info@riyadkhan.dev"
+                                    content="frriyad111@gmail.com"
+                                    href="mailto:frriyad111@gmail.com"
                                 />
                                 <ContactInfoItem
                                     icon={MapPinIcon}

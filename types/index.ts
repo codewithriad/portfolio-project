@@ -9,6 +9,7 @@ export interface Project {
   purpose: string;
   technologies: string[];
   liveUrl?: string;
+  category: string;
 }
 
 export interface Testimonial {

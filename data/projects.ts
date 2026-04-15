@@ -10,6 +10,7 @@ export const projects: Project[] = [
     image: "/images/projects/tapplix.jpg",
     slug: "tapplix-sass-project",
     liveUrl: "https://www.tapplix.tech/",
+    category: "SaaS",
   },
   {
     id: "2",
@@ -20,6 +21,7 @@ export const projects: Project[] = [
     image: "/images/projects/ebonix.jpg",
     slug: "ebonix-ai-project",
     liveUrl: "https://ebonix.ai",
+    category: "AI",
   },
   {
     id: "3",
@@ -30,6 +32,7 @@ export const projects: Project[] = [
     image: "/images/projects/charity.jpeg",
     slug: "charity-project",
     liveUrl: "https://donateforchildren.netlify.app/",
+    category: "Web App",
   },
   {
     id: "4",
@@ -40,5 +43,6 @@ export const projects: Project[] = [
     image: "/images/projects/fitness.png",
     slug: "fitness-tracker",
     liveUrl: "https://fitness-tracker-inky-five.vercel.app/",
+    category: "Web App",
   },
 ];
